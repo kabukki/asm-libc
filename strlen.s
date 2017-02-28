@@ -1,25 +1,24 @@
-section .data
-	
+;; size_t strlen(const char *s);
+;; calculates the length of the string s, excluding the terminating null byte ('\0').
 
 section .text
-	global _start
+	global strlen
 
-_printRBX:
-	mov rax, 1		; sys_write
-	mov rdi, 1		; stdout
-	mov rsi, [edi]		; argv[0]
-	mov r10, 1		; longueur de la chaine 
-	syscall
-	ret
+strlen:
+	push rbp
+	mov rbp, rsp
 
-_start:
-	mov rbx, rsp
-	add rbx, 32		; argv
+	mov rax, 0		; rax = 0
+	mov r8, rdi		; r8 = str
+	jmp _while		; check condition before starting loop
+_cwhile:			; while content
+	inc r8			;   r8++
+	inc rax			;   rax++
+_while:				; while (*r8 != 0x0)
+	mov cl, [r8]
+	cmp cl, 0x0
+	jne _cwhile
 
-	call _printRBX
+	leave
+	ret			; return rax
 
-	mov rax, 60
-	mov rdi, 0
-	syscall
-	ret
-	
