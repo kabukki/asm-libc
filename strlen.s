@@ -8,15 +8,10 @@ strlen:
 	push rbp
 	mov rbp, rsp
 
-	mov rax, 0		; rax = 0
-	mov r8, rdi		; r8 = str
-	jmp _while		; check condition before starting loop
-_cwhile:			; while content
-	inc r8			;   r8++
+	mov rax, -1		; rax = -1
+_cwhile:			; do {
 	inc rax			;   rax++
-_while:				; while (*r8 != 0x0)
-	mov cl, [r8]
-	cmp cl, 0x0
+	cmp byte [rdi+rax], 0x0	; } while (*(s + rax) != 0)
 	jne _cwhile
 
 	leave

@@ -5,7 +5,7 @@
 ## Login   <le-rou_c@epitech.net>
 ## 
 ## Started on  Tue Feb 28 09:39:50 2017 Lucien Le Roux
-## Last update Tue Feb 28 22:37:04 2017 Lucien Le Roux
+## Last update Wed Mar  1 19:04:32 2017 Lucien Le Roux
 ##
 
 # Automatic variables:
@@ -15,11 +15,19 @@ NAME	=	libasm.so
 
 SRC	=	strlen.s	\
 		strchr.s	\
-		strcmp.s
+		strcmp.s	\
+		strncmp.s	\
+		strcasecmp.s	\
+		memset.s	\
+		memcpy.s	\
+		memmove.s	\
+		tolower.s	\
+		toupper.s
+
 OBJ	=	$(SRC:.s=.o)
 
-AS	=	nasm -f elf64
-LD	=	ld -lc --dynamic-linker /lib64/ld-linux-x86-64.so.2 -shared -g
+AS	=	nasm -f elf64 -g
+LD	=	ld -shared
 
 RM	=	rm -f
 
@@ -29,11 +37,7 @@ $(NAME):	$(OBJ)
 	$(LD) $^ -o $(NAME)
 
 # Object files
-strlen.o:	strlen.s
-	$(AS) $< -o $@
-strchr.o:	strchr.s
-	$(AS) $< -o $@
-strcmp.o:	strcmp.s
+%.o:	%.s
 	$(AS) $< -o $@
 
 clean:
