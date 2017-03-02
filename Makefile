@@ -5,7 +5,7 @@
 ## Login   <le-rou_c@epitech.net>
 ## 
 ## Started on  Tue Feb 28 09:39:50 2017 Lucien Le Roux
-## Last update Wed Mar  1 19:04:32 2017 Lucien Le Roux
+## Last update Thu Mar  2 16:21:24 2017 Lucien Le Roux
 ##
 
 # Automatic variables:
@@ -18,6 +18,11 @@ SRC	=	strlen.s	\
 		strcmp.s	\
 		strncmp.s	\
 		strcasecmp.s	\
+		rindex.s	\
+		strstr.s	\
+		strpbrk.s	\
+		strspn.s	\
+		strcspn.s	\
 		memset.s	\
 		memcpy.s	\
 		memmove.s	\

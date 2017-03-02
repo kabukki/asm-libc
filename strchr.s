@@ -9,17 +9,14 @@ strchr:
 	mov rbp, rsp
 
 	mov rax, rdi		; rax = s
-	mov r9, rsi		; r9 = c
 	jmp _while		; check condition before starting loop
 _cwhile:			; while content
 	inc rax			;   rax++
-_while:				; while (*r8 != 0x0 && *r8 != r9)
-	mov cl, [rax]
-	cmp cl, 0x0
-	je _done
-	cmp cl, r9b
-	je _done
-	jmp _cwhile
+_while:				; while (
+	cmp byte [rax], 0x0	; *rax != 0
+	je _done		;  &&
+	cmp byte [rax], sil	; *rax != c)
+	jne _cwhile
 _done:
 	leave
 	ret			; return rax
