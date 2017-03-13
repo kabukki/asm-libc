@@ -4,7 +4,7 @@
 DEFAULT REL
 
 section .text
-	global strcasecmp
+	global strcasecmp:function
 	extern tolower
 
 strcasecmp:

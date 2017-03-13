@@ -2,18 +2,20 @@
 ;; calculates the length of the string s, excluding the terminating null byte ('\0').
 
 section .text
-	global strlen
+	global strlen:function
 
 strlen:
 	push rbp
 	mov rbp, rsp
 
-	mov rax, -1		; rax = -1
-_cwhile:			; do {
+	mov rax, 0		; rax = 0
+while:				; while (
+	cmp byte [rdi+rax], 0	;  *(s + rax) != 0
+	je done			; )
+cwhile:				; {
 	inc rax			;   rax++
-	cmp byte [rdi+rax], 0x0	; } while (*(s + rax) != 0)
-	jne _cwhile
-
+	jne while		; }
+done:
 	leave
 	ret			; return rax
 

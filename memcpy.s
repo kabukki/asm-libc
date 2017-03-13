@@ -2,7 +2,7 @@
 ;; copies n bytes from memory area src to memory area dest. The memory areas must not overlap.
 
 section .text
-	global memcpy
+	global memcpy:function
 
 memcpy:
 	push rbp

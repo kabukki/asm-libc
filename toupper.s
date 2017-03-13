@@ -10,10 +10,10 @@ toupper:
 
 	mov rax, rdi			; rax = c
 	cmp rax, 'a'			; if (rax >= 'a'
-	jl _return			;  &&
+	jl return			;  &&
 	cmp rax, 'z'			; rax <= 'z')
-	jg _return
-	sub rax, 32			;   rax -= 32
-_return:
+	jg return
+	sub rax, byte 'a' - 'A'		;   rax -= 32
+return:
 	leave
 	ret				; return rax

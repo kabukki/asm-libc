@@ -4,7 +4,7 @@
 DEFAULT REL
 
 section .text
-	global memmove
+	global memmove:function
 	extern memcpy
 
 memmove:

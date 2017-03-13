@@ -2,7 +2,7 @@
 ;; calculates the length (in bytes) of the initial segment of s which consists entirely of bytes not in reject.
 
 section .text
-	global strcspn
+	global strcspn:function
 
 strcspn:
 	push rbp

@@ -2,7 +2,7 @@
 ;; finds the first occurrence of the substring needle in the string haystack.
 
 section .text
-	global strstr
+	global strstr:function
 
 strstr:
 	push rbp
@@ -31,6 +31,10 @@ _done:
 	jmp while			; }
 done:
 	mov rax, rdi			; rax = haystack
+	cmp byte [rax], 0		; if (*rax == 0)
+	jne return
+	mov rax, 0x0			;   rax = NULL;
+return:
 	pop rdi				; restore rdi
 
 	leave

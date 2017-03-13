@@ -8,12 +8,12 @@ tolower:
 	push rbp
 	mov rbp, rsp
 
-	mov rax, rdi			; rax = c
+	mov rax, rdi
 	cmp rax, 'A'			; if (rax >= 'A'
-	jl _return			;  &&
+	jl return			;  &&
 	cmp rax, 'Z'			; rax <= 'Z')
-	jg _return
-	add rax, 32			;   rax += 32
-_return:
+	jg return
+	add rax, byte 'a' - 'A'		;   rax += 32
+return:
 	leave
 	ret				; return rax
