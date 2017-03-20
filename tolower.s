@@ -2,7 +2,7 @@
 ;; If c is a uppercase letter, tolower() returns its lowercase equivalent, otherwise, it returns c.
 
 section .text
-	global tolower
+	global tolower:function
 
 tolower:
 	push rbp

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+LIB="libasm.so"
+BIN="a.out"
+
+FMINI=$(mktemp)
+FLIBC=$(mktemp)
+FDIFF=$(mktemp)
+
+./$BIN > $FLIBC
+LD_PRELOAD=$PWD/$LIB ./$BIN > $FMINI
+echo "Differences: ('<': you, '>': libc)"
+diff $FMINI $FLIBC > $FDIFF
+if [[ $? -eq 0 ]]; then
+    echo "---> Everything is OK !"
+else
+    echo "---> Something is wrong !"
+    cat $FDIFF
+fi
+
+rm -f $FMINI $FLIBC
+
