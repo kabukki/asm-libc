@@ -1,0 +1,9 @@
+objdump strcmp.o -dj .text -M intel | less
+gdb -x asmgdb a.out
+layout asm
+C -> asm concis : https://godbolt.org/
+
+ID des appels systeme:
+/usr/include/asm/unistd_64.h
+
+bonus > Gestion de errno

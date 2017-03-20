@@ -1,0 +1,5 @@
+set exec-wrapper env LD_PRELOAD=/home/le-rou_c/docs/asm_minilibc/libasm.so
+set disassembly-flavor intel
+show exec-wrapper
+
+# unset exec-wrapper
