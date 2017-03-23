@@ -11,6 +11,11 @@ strcasecmp:
 	push rbp
 	mov rbp, rsp
 
+        mov rax, 0			; rax = 0
+	cmp rdi, 0x0			; if (s1 == NULL)
+	je return			;   return rax
+	cmp rsi, 0x0			; if (s2 == NULL)
+	je return		        ;   return rax
 	mov rcx, 0			; rcx = 0
 	mov r8, rdi			; r8 = s1 // backup for call to tolower
 _cwhile:				; do {
@@ -31,6 +36,6 @@ _while:					; } while (
 	je _cwhile
 _done:
 	sub rax, rbx
-
+return:
 	leave
 	ret				; return rax

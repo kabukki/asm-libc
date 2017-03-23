@@ -9,6 +9,11 @@ strstr:
 	mov rbp, rsp
 
 	push rdi			; save haystack because we will modify it
+	mov rax, 0			; rax = NULL
+	cmp rdi, 0x0			; if (haystack == NULL)
+	je done				;   return rax;
+	cmp rsi, 0x0			; if (needle == NULL)
+	je done				;   return rax;
 	cmp byte [rsi], 0		; if (*needle == 0)
 	je done				;   return rax;
 while:					; while (

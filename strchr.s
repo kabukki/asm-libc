@@ -9,6 +9,8 @@ strchr:
 	mov rbp, rsp
 
 	mov rax, rdi		; rax = s
+	cmp rax, 0x0		; if (rax == NULL)
+	je return		;   return rax
 while:				; while (
 	cmp byte [rax], 0	;  *rax != 0
 	je done			;   &&

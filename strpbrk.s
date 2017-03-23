@@ -10,6 +10,11 @@ strpbrk:
 	mov rbp, rsp
 
 	push rdi			; save s because we will modify it
+	mov rax, 0			; rax = NULL
+	cmp rdi, 0x0			; if (s == NULL)
+	je done				;   return rax;
+	cmp rsi, 0x0			; if (accept == NULL)
+	je done				;   return rax;
 	cmp byte [rsi], 0		; if (*accept == 0)
 	je done				;   return rax;
 while:					; while (

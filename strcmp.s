@@ -8,6 +8,11 @@ strcmp:
 	push rbp
 	mov rbp, rsp
 
+	mov rax, 0			; rax = 0
+	cmp rdi, 0x0			; if (s1 == NULL)
+	je return			;   return rax
+	cmp rsi, 0x0			; if (s2 == NULL)
+	je return			;   return rax
 	mov rcx, 0			; rcx = 0
 cwhile:					; do {
 	movzx rax, byte [rdi+rcx]	;   rax = *(s1 + rcx)
@@ -22,6 +27,6 @@ while:					; } while (
 	je cwhile			; )
 done:
 	sub rax, rbx			; rax = rbx - rax;
-
+return:
 	leave
 	ret				; return rax
