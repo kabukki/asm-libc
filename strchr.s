@@ -12,17 +12,15 @@ strchr:
 	cmp rax, 0x0		; if (rax == NULL)
 	je return		;   return rax
 while:				; while (
-	cmp byte [rax], 0	;  *rax != 0
-	je done			;   &&
 	cmp byte [rax], sil	;  *rax != c
 	je done			; )
 cwhile:				; {
+	cmp byte [rax], 0	;   if (*s == 0)
+	je done			;     return 0
 	inc rax			;   rax++
 	jmp while		; }
 done:
-	cmp byte [rax], 0	; if (*rax == 0)
-	jne return
-	mov rax, 0x0		;   rax = NULL;
+
 return:
 	leave
 	ret			; return rax
