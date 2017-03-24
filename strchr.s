@@ -8,21 +8,18 @@ strchr:
 	push rbp
 	mov rbp, rsp
 
-	mov rax, rdi		; rax = s
-	cmp rax, 0x0		; if (rax == NULL)
-	je return		;   return rax
+	push rdi
 while:				; while (
-	cmp byte [rax], 0	;  *rax != 0
-	je done			;   &&
-	cmp byte [rax], sil	;  *rax != c
+	cmp byte [rdi], sil	;  *rdi != c
 	je done			; )
 cwhile:				; {
-	inc rax			;   rax++
+	cmp byte [rdi], 0	;   if (*s == 0)
+	je done			;     return 0
+	inc rdi			;   rax++
 	jmp while		; }
 done:
-	cmp byte [rax], 0	; if (*rax == 0)
-	jne return
-	mov rax, 0x0		;   rax = NULL;
+	pop rdi
+
 return:
 	leave
 	ret			; return rax
