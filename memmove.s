@@ -22,9 +22,9 @@ _forward:
 	call memcpy wrt ..plt	; memcpy(rdi, rsi, rdx);
 	jmp _return
 _backward:
-	mov r8, rdi		; r8 = dest
-	mov r9, rsi		; r9 = src
-	mov r10, rdx		; r10 = n
+	lea r8, [rdi]		; r8 = dest
+	lea r9, [rsi]		; r9 = src
+	lea r10, [rdx]		; r10 = n
 _while:				; do {
 	dec r10			; r10--
 	mov al, BYTE [r9+r10]

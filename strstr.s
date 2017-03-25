@@ -17,15 +17,15 @@ while:					; while (
 	je done				; )
 cwhile:					; {
 	mov rax, rdi			;   rax = haystack
-	mov rbx, rsi			;   rbx = needle
+	mov rdx, rsi			;   rdx = needle
 _while:					;   while (1) {
-	mov cl, byte [rbx]
-	cmp cl, 0			;     if (*rbx == 0)
+	mov cl, byte [rdx]
+	cmp cl, 0			;     if (*rdx == 0)
 	je done				;       return haystack
-	cmp byte [rax], cl		;     if (*rbx != *rax)
+	cmp byte [rax], cl		;     if (*rdx != *rax)
 	jne _done			;       break ;
 	inc rax				;     rax++
-	inc rbx				;     rbx++
+	inc rdx				;     rdx++
 	jmp _while			;   }
 _done:
 	inc rdi				;   haystack++

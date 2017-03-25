@@ -17,7 +17,7 @@ strcasecmp:
 _cwhile:				; do {
 	movzx rdi, byte [rsi+rcx]
 	call tolower wrt ..plt
-	mov rbx, rax			;   rbx = tolower(*(s2 + rcx))
+	lea rdx, [rax]			;   rdx = tolower(*(s2 + rcx))
 
 	movzx rdi, byte [r8+rcx]
 	call tolower wrt ..plt		;   rax = tolower(*(s1 + rcx))
@@ -26,12 +26,12 @@ _cwhile:				; do {
 _while:					; } while (
 	cmp al, 0x0			; al != 0
 	je _done			;  &&
-	cmp bl, 0x0			; bl != 0
+	cmp dl, 0x0			; dl != 0
 	je _done			;  &&
-	cmp al, bl			; al == bl)
+	cmp al, dl			; al == dl)
 	je _cwhile
 _done:
-	sub rax, rbx
+	sub rax, rdx
 return:
 	leave
 	ret				; return rax

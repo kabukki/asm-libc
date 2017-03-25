@@ -12,20 +12,20 @@ strncmp:
 	mov rcx, 0			; rcx = 0
 cwhile:					; do {
 	movzx rax, byte [rdi+rcx]	;   rax = *(s1 + rcx)
-	movzx rbx, byte [rsi+rcx]	;   rbx = *(s2 + rcx)
+	movzx r8, byte [rsi+rcx]	;   r8 = *(s2 + rcx)
 	dec rdx				;   n--
 	inc rcx				;   rcx++
 while:					; } while (
 	cmp al, 0x0			;  al != 0
 	je done				;   &&
-	cmp bl, 0x0			;  bl != 0
+	cmp r8b, 0x0			;  r8b != 0
 	je done				;   &&
 	cmp dl, 0			;  n > 0
 	jle done			;   &&
-	cmp al, bl			;  al == bl
+	cmp al, r8b			;  al == r8b
 	je cwhile			; )
 done:
-	sub rax, rbx			; rax = rax - rbx
+	sub rax, r8			; rax = rax - r8
 return:
 	leave
 	ret				; return rax

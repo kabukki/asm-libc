@@ -16,18 +16,18 @@ while:					; while (
 	cmp byte [rdi], 0		;  *s != 0
 	je done				; )
 cwhile:					; {
-	mov rbx, rsi			;   rbx = accept
+	lea rdx, [rsi]			;   rdx = accept
 _while:					;   while (
-	cmp byte [rbx], 0		;    *rbx
+	cmp byte [rdx], 0		;    *rdx
 	je _done			;   )
 _cwhile:				;   {
-	mov cl, byte [rbx]
-	cmp byte [rdi], cl		;     if (*rbx == *s)
+	mov cl, byte [rdx]
+	cmp byte [rdi], cl		;     if (*rdx == *s)
 	je _done			;       break ; // character found
-	inc rbx				;     rbx++
+	inc rdx				;     rdx++
 	jmp _while			;   }
 _done:
-	cmp byte [rbx], 0		;   if (*rbx == 0) // no match
+	cmp byte [rdx], 0		;   if (*rdx == 0) // no match
 	je done				;     break ;
 	inc rax				;   rax++
 	inc rdi				;   s++
